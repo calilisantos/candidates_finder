@@ -1,0 +1,16 @@
+# Use Python 3.10 as base image
+FROM python:3.10
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the necessary files to the working directory
+
+COPY requirements.txt .
+COPY tox.ini .
+COPY candidates_finder ./candidates_finder
+COPY tests ./tests
+
+# Install python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
