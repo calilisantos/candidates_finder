@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  spark_env:
+    image: apache/spark-py:v3.4.0
+    container_name: spark_env
+    volumes:
+      - /etc/java-11-openjdk/security:/java_security  # Mount java security files
+    command: |
+      bash -c "
+      echo This was the JAVA_HOME $JAVA_HOME
+      tail -f /dev/null
+      "
+
+  candidates_finder:
+    build:
+      context: .
+      dockerfile: Dockerfile.candidates_finder
+    container_name: candidates_finder
+    depends_on:
+      - spark_env
+    env_file:
+      - .env
+    volumes:
+      - ./candidates_finder:/app/candidates_finder
+      - ./tests:/app/tests
+      - /usr/lib/jvm/java-11-openjdk-amd64:/usr/lib/jvm/java-11-openjdk-amd64  # Getting the java home
+      - /etc/java-11-openjdk/security:/usr/lib/jvm/java-11-openjdk-amd64/conf/security  # Mount java security files
+    environment:
+      - PYTHONPATH=/app
+      - JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+    command: |
+      bash -c "
+      echo ::::::::::::::::::::RUNNING flake8:::::::::::::::::::: &&
+      flake8 &&
+      echo ::::::::::::::::::::RUNNING TESTS:::::::::::::::::::: &&
+      python -m pytest --cov -v &&
+      echo ::::::::::::::::::::RUNNING Candidates Finder:::::::::::::::::::: &&
+      python3 candidates_finder/main.py &&
+      echo ::::::::::::::::::::RUNNING CONTAINER:::::::::::::::::::: &&
+      tail -f /dev/null
+      "
