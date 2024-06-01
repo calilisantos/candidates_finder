@@ -8,7 +8,7 @@ services:
       - /etc/java-11-openjdk/security:/java_security  # Mount java security files
     command: |
       bash -c "
-      echo This was the JAVA_HOME $JAVA_HOME
+      echo This was the JAVA_HOME $JAVA_HOME &&
       tail -f /dev/null
       "
 
