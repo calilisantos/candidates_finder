@@ -76,6 +76,8 @@ A aplicação foi pensada para ser testada com o `Docker`, visando torná-la o m
 
 >**IMPORTANTE**<br/>Independente da escolha, após clonar o projeto, entre com seu terminal na pasta criada:<br/>`cd candidates_finder`<br/>**Todas orientações abaixo, tem essa pasta como referência.**
 
+>**IMPORTANTE**<br/>Para os dois cenários, é necessário informar seu token PAT do github no arquivo `.env`, ou exportar a variável de ambiente `GITHUB_PAT` com o valor do seu token.<br/>Sem esse passo o código não funcionará.
+
 ### <strong><a id='sem-docker'>[1. Execução sem o docker:](#topicos)</a></strong>
 
 Nesse cenário, é necessário que sua máquina possua instalado: i. o `spark` na versão 3.4.0; ii. o kit de desenvolvimento java (`java jdk`) na versão 8 ou superior; iii. e o `python`. Sobre essas ferramentas:
@@ -233,7 +235,7 @@ Se estiver a vontade, clone o repositório e, seja com ou sem o Docker, execute,
 
   Com o uso do `docker-compose` como descrito [aqui](#com-docker), o comportamento esperado da aplicação é:
 
-  ![candidates_finder gif](docs/book-app.gif)
+  ![candidates_finder gif](docs/candidates_finder.gif)
 
 # <a id='next'>[Próximos passos](#topicos)</a>
 
