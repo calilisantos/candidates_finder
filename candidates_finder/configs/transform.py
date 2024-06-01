@@ -1,7 +1,7 @@
 from pyspark.sql import types as T
 
 COMPANY_PATTERN_TO_REMOVE: str = "@"
-CSV_FILE: str = "candidates_report.csv"
+CSV_FILE: str = "output/candidates_report.csv"
 DATE_COLUMN: str = "created_at"
 DATE_FORMAT: str = "dd/MM/yyyy"
 SCHEMA = T.StructType([
