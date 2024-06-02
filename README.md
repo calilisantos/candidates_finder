@@ -163,11 +163,11 @@ Com o funcionamento dos containers, é possível executar os arquivos do projeto
 # executando arquivo do container:
 docker exec <container_name_or_id> python /caminho/para/seu/arquivo.py
 # exemplo de execução dos testes do código:
-docker exec book-app pytest -v
+docker exec candidates_finder pytest -v
 # executando arquivos dentro do container:
 docker exec -it <container_name> bash
 # ex para o cluster do app:
-docker exec -it book-app
+docker exec -it candidates_finder bash
 ```
 >**IMPORTANTE**<br/>Nos logs de inicialização do container é mostrada onde está localizada o executável java (JAVA_HOME) do container spark. Caso esse valor seja diferente do atual no docker-compose, modifique-o para execução com êxito do projeto.
 ```dockerfile
@@ -195,7 +195,7 @@ flake8 candidates_finder/main.py
 
 <strong><a id='testes'>[Testes](#topicos)</a></strong>
 
-Foi utilizado o **[pytest](https://docs.pytest.org/en/8.0.x/)** e **[unittest](https://docs.python.org/3/library/unittest.html)** para construção dos testes (de integração, unitários e de carga atualmente) da aplicação.
+Foi utilizado o **[pytest](https://docs.pytest.org/en/8.0.x/)** e **[unittest](https://docs.python.org/3/library/unittest.html)** para construção dos testes (unitários atualmente) da aplicação.
 
 Mais detalhes na documentação dessas bibliotecas.
 
