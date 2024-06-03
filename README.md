@@ -45,7 +45,7 @@ Pretendeu-se utilizar a `screaming-architecture` para a organização do projeto
 * **Na pasta [tests](tests) estão os arquivos com os testes das respectivas camadas do código-fonte.**
 * **E os arquivos:**
   * **[.env](.env)** com as variáveis de ambiente do projeto;
-    >IMPORTANTE:<br/>Para execução do projeto, informe seu token PAT do github. Como criar o seu [aqui](https://docs.github.com/pt/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-token).
+    >IMPORTANTE:<br/>Para execução do projeto, informe seu personal access token (PAT) do github. Detalhes [aqui](#PAT).
   * **[.gitignore](.gitignore)** com as regras de arquivos a serem ignorados pelo git;
   * **[playground.py](playground.ipynb)** notebook jupyter com o código-fonte original, utilizado como versão piloto do projeto;
   * **[docker-compose.yml](docker-compose.yml)** arquivo que possibilita a execução da aplicação, orquestrando as imagens docker do `spark` e `python`;
@@ -68,15 +68,17 @@ Pretendeu-se utilizar a `screaming-architecture` para a organização do projeto
     
 # <a id='orientacoes'>[Orientações](#topicos)</a>
 
-<strong><a id='execucao'>[Executando o projeto](#topicos)</a></strong>
+## <strong><a id='execucao'>[Executando o projeto](#topicos)</a></strong>
 
 A aplicação foi pensada para ser testada com o `Docker`, visando torná-la o mais agnóstica possível.
 
 É possível sua execução sem a ferramenta, com sugestões para os dois cenários abaixo:
 
->**IMPORTANTE**<br/>Independente da escolha, após clonar o projeto, entre com seu terminal na pasta criada:<br/>`cd candidates_finder`<br/>**Todas orientações abaixo, tem essa pasta como referência.**
+### IMPORTANTE
+>Independente da escolha, após clonar o projeto entre com seu terminal na pasta criada:<br/>`cd candidates_finder`<h3>**Todas orientações abaixo tem essa pasta como referência.**</h3>
 
->**IMPORTANTE**<br/>Para os dois cenários, é necessário informar seu token PAT do github no arquivo `.env`, ou exportar a variável de ambiente `GITHUB_PAT` com o valor do seu token.<br/>Sem esse passo o código não funcionará.
+### <a id='PAT'>[IMPORTANTE](.env)</a>
+>Para os dois cenários, é necessário informar seu personal access token (PAT) do github no arquivo `.env` ou exportar a variável de ambiente `GITHUB_PAT` com o valor do seu token.<br/><h3>Como criar o seu [aqui](https://docs.github.com/pt/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-token).</h3><h3>SEM O TOKEN O CÓDIGO NÃO FUNCIONARÁ.</h3>
 
 ### <strong><a id='sem-docker'>[1. Execução sem o docker:](#topicos)</a></strong>
 
@@ -177,7 +179,7 @@ environment:
   - JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 # valor atual.
 ```
 
-<strong><a id='linter'>[Linter](#topicos)</a></strong>
+## <strong><a id='linter'>[Linter](#topicos)</a></strong>
 
 Foi utilizado o [**flake8**](https://flake8.pycqa.org/en/latest/) para fazer a análise estática do código visando garantir as boas práticas e legibilidade do código.
 
@@ -193,7 +195,7 @@ flake8 candidates_finder/
 flake8 candidates_finder/main.py
 ```
 
-<strong><a id='testes'>[Testes](#topicos)</a></strong>
+## <strong><a id='testes'>[Testes](#topicos)</a></strong>
 
 Foi utilizado o **[pytest](https://docs.pytest.org/en/8.0.x/)** e **[unittest](https://docs.python.org/3/library/unittest.html)** para construção dos testes (unitários atualmente) da aplicação.
 
@@ -210,7 +212,7 @@ Se estiver a vontade, clone o repositório e, seja com ou sem o Docker, execute,
   O time de Recrutamento e Seleção recebeu uma informação que os seguidores de uma determinada pessoa candidata no github podem ser potenciais para a vaga de engenharia de dados.
   Por isso, Recrutamento solicitou que fosse feito o web scraping usando a api do github para criar uma lista dessas pessoas candidatas e esse é o objetivo do projeto.
 
-  O relatório precisa conter ss seguintes campo:
+  O relatório precisa conter os seguintes campos:
   * name;
   * company;
   * blog;
