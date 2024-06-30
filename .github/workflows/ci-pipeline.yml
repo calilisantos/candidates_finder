@@ -48,10 +48,10 @@ jobs:
       #   echo "Coverage Required: $COVERAGE_REQUIRED"
 
     - name: Run Coverage Test
-      run: |
-        echo ${{ env.COVERAGE_REQUIRED }} or echo $COVERAGE_REQUIRED
       # run: |
-      #   set -eu
-      #   export PYTHONPATH=./
-      #   pytest --cov=candidates_finder/ --cov-fail-under=$COVERAGE_REQUIRED -v
+      #   echo ${{ env.COVERAGE_REQUIRED }} or echo $COVERAGE_REQUIRED
+      run: |
+        set -eu
+        export PYTHONPATH=./
+        pytest --cov=candidates_finder/ --cov-fail-under=${{ env.COVERAGE_REQUIRED }} -v
       # pytest --cov=candidates_finder/ --cov-fail-under=${{ env.COVERAGE_REQUIRED }} -v
