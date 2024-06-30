@@ -29,12 +29,19 @@ jobs:
         if [ -f dev-requirements.txt ]; then pip install -r dev-requirements.txt; fi
     - name: Run Lint
       run: |
+        set -eu
         # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 120 chars wide
         flake8 . --count --exit-zero --max-line-length=120 --ignore=E123,E131 --statistics
-    - name: Run Tests
+
+    - name: Set Coverage Required
+      run: |
+        export COVERAGE_REQUIRED=70
+        echo "Coverage Required: $COVERAGE_REQUIRED"
+
+    - name: Run Coverage Test
       run: |
         set -eu
         export PYTHONPATH=./
-        pytest --cov -v
+        pytest --cov=candidates_finder/ --cov-fail-under=$COVERAGE_REQUIRED -v

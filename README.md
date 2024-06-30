@@ -247,7 +247,7 @@ Se estiver a vontade, clone o repositório e, seja com ou sem o Docker, execute,
 
   * **Ampliar cenários de testes** garantindo o design da aplicação;
 
-  * **Construir uma esteira de CI/CD** para garantir a governança das implementações do projeto;
+  * **Construir uma esteira de CI** para garantir a governança das implementações do projeto - **DONE**;
 
   * **Orquestrar o ambiente com Kubernetes**, adicionando uma opção de disponibilidade da execução do projeto;
 
