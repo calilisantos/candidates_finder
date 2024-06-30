@@ -14,7 +14,8 @@ permissions:
 
 jobs:
   build:
-
+    env:
+      COVERAGE_REQUIRED: 70
     runs-on: ubuntu-latest
 
     steps:
