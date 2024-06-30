@@ -2,8 +2,11 @@
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
 name: Candidates Finder CI
+run-name: ${{ github.workflow }}.${{ github.run_number}}
 
 on:
+  workflow_dispatch:
+    branches: [ "main" ]
   push:
     branches: [ "main" ]
   pull_request:
@@ -13,28 +16,41 @@ permissions:
   contents: read
 
 jobs:
-  build:
-
+  Candidates_Finder_CI:
+    name: ${{ github.workflow }}
+    env:
+      COVERAGE_REQUIRED: ${{ 70 }}
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v3
-      with:
-        python-version: "3.10"
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        if [ -f dev-requirements.txt ]; then pip install -r dev-requirements.txt; fi
-    - name: Run Lint
-      run: |
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 120 chars wide
-        flake8 . --count --exit-zero --max-line-length=120 --ignore=E123,E131 --statistics
-    - name: Run Tests
-      run: |
-        set -eu
-        export PYTHONPATH=./
-        pytest --cov -v
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f dev-requirements.txt ]; then pip install -r dev-requirements.txt; fi
+
+      - name: Run Lint
+        run: |
+          set -eu
+          echo [DEBUG] Linting the code
+          echo [INFO] The number of files with sintax errors or undefined names are:
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          echo [INFO] The number of files with others errors are:
+          flake8 . --count --exit-zero --max-line-length=120 --ignore=E123,E131 --statistics
+
+      # - name: Set Coverage Required # Alternative way to set env variable
+      #   run: |
+      #     echo "COVERAGE_REQUIRED=70" >> $GITHUB_ENV
+      #     echo "Coverage Required: $COVERAGE_REQUIRED"
+
+      - name: Run Coverage Test
+        run: |
+          set -eu
+          export PYTHONPATH=./
+          echo [DEBUG] Running the tests
+          pytest --cov=candidates_finder/ --cov-fail-under=${{ env.COVERAGE_REQUIRED }} -v
