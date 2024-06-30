@@ -2,7 +2,7 @@
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
 name: Candidates Finder CI
-run-name: ${{ github.workflow }}.${{ github.run_id}}
+run-name: ${{ github.workflow }}.${{ github.run_number}}
 
 on:
   push:
@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   Candidates_Finder_CI:
-    name: Candidates Finder CI
+    name: ${{ github.workflow }}
     env:
       COVERAGE_REQUIRED: ${{ 70 }}
     runs-on: ubuntu-latest
