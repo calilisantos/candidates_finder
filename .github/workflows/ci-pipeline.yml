@@ -45,4 +45,4 @@ jobs:
       run: |
         set -eu
         export PYTHONPATH=./
-        pytest --cov=candidates_finder/ --cov-fail-under=$COVERAGE_REQUIRED -v
+        pytest --cov=candidates_finder/ --cov-fail-under=${{ env.COVERAGE_REQUIRED }} -v
