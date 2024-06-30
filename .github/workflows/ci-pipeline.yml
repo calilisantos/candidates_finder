@@ -31,8 +31,10 @@ jobs:
       run: |
         set -eu
         # stop the build if there are Python syntax errors or undefined names
+        echo the number of files with sintax errors or undefined names are:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 120 chars wide
+        echo the number of files with others errors are:
         flake8 . --count --exit-zero --max-line-length=120 --ignore=E123,E131 --statistics
 
     - name: Set Coverage Required
@@ -46,7 +48,7 @@ jobs:
 
     - name: Run Coverage Test
       run: |
-        echo ${{ env.COVERAGE_REQUIRED }} plus ${{ env.COVERAGE_REQUIRED }} is: $(( ${{ env.COVERAGE_REQUIRED }} + ${{ env.COVERAGE_REQUIRED }} ))
+        echo ${{ env.COVERAGE_REQUIRED }} or echo $COVERAGE_REQUIRED
       # run: |
       #   set -eu
       #   export PYTHONPATH=./
