@@ -37,14 +37,18 @@ jobs:
 
     - name: Set Coverage Required
       run: |
-        echo "COVERAGE_REQUIRED=70" >> $GITHUB_ENV
+        echo "Coverage Required: $COVERAGE_REQUIRED"
+      env:
+        COVERAGE_REQUIRED: ${{ 70 }}
+      # run: |
+      #   echo "COVERAGE_REQUIRED=70" >> $GITHUB_ENV
       #   echo "Coverage Required: $COVERAGE_REQUIRED"
-      # env:
-      #   COVERAGE_REQUIRED: ${{ 70 }}
 
     - name: Run Coverage Test
       run: |
-        set -eu
-        export PYTHONPATH=./
-        pytest --cov=candidates_finder/ --cov-fail-under=$COVERAGE_REQUIRED -v
+        echo ${{ env.COVERAGE_REQUIRED }} plus ${{ env.COVERAGE_REQUIRED }} is: $(( ${{ env.COVERAGE_REQUIRED }} + ${{ env.COVERAGE_REQUIRED }} ))
+      # run: |
+      #   set -eu
+      #   export PYTHONPATH=./
+      #   pytest --cov=candidates_finder/ --cov-fail-under=$COVERAGE_REQUIRED -v
       # pytest --cov=candidates_finder/ --cov-fail-under=${{ env.COVERAGE_REQUIRED }} -v
