@@ -18,6 +18,7 @@ Aqui você vai encontrar os detalhes de como está estruturado e foi desenvolvid
 - [Implementações](#implementacoes)
   - [Contextualizando](#contextualizando)
   - [Visão do app](#consumindo)
+  - [Continuous Integration](#ci)
 - [Próximos passos](#next)
 
 # <a id='desenvolvimento'>[Desenvolvimento](#topicos)</a>
@@ -238,6 +239,14 @@ Se estiver a vontade, clone o repositório e, seja com ou sem o Docker, execute,
   Com o uso do `docker-compose` como descrito [aqui](#com-docker), o comportamento esperado da aplicação é:
 
   ![candidates_finder gif](docs/candidates_finder.gif)
+
+<strong><a id='ci'>[Continuous Integration](#topicos)</a></strong>
+
+  Buscando garantir a governança das implementações do projeto, foi criada uma esteira de CI com o `Github Actions` ([disponível aqui](https://github.com/calilisantos/candidates_finder/actions/workflows/ci-pipeline.yml)).
+
+  Nela são executados: i. teste de lint; ii. e de cobertura de código, atualmente com o mínimo de 70% requerido.
+
+  A cada push ou pull request, a esteira é acionada, podendo ser disparada manualmente também no link acima.
 
 # <a id='next'>[Próximos passos](#topicos)</a>
 
