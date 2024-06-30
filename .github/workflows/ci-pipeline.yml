@@ -39,7 +39,7 @@ jobs:
       run: |
         echo "Coverage Required: $COVERAGE_REQUIRED"
       env:
-        COVERAGE_REQUIRED: 70
+        COVERAGE_REQUIRED: ${{ 70 }}
 
     - name: Run Coverage Test
       run: |
